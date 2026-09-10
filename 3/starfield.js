@@ -155,9 +155,8 @@
       const dt=Math.min(.05,Math.max(.001,lastFrame?(now-lastFrame)/1000:1/30));lastFrame=now;
       state.x+=(state.tx-state.x)*.075;state.y+=(state.ty-state.y)*.075;
       const age=reduceMotion?10:(now-state.start)/1000;
-      const hero=type==='astra',flowTime=reduceMotion?0:Math.max(0,age);
-      // The hero is a continuously flowing spiral, already formed on load and reset.
-      const form=hero?1:Math.min(1,age/2.4),ease=1-Math.pow(1-form,4);
+      const hero=type==='astra',flowTime=reduceMotion?0:Math.max(0,age-3);
+      const form=Math.min(1,age/(hero?5.5:2.4)),ease=1-Math.pow(1-form,4);
       const spin=reduceMotion||hero?0:Math.sin(now*.00012)*.045;
       const ax=state.x,ay=state.y+spin,ca=Math.cos(ay),sa=Math.sin(ay),cx=Math.cos(ax),sx=Math.sin(ax);
       ctx.clearRect(0,0,w,h);ctx.globalCompositeOperation='lighter';
@@ -184,7 +183,12 @@
         const x=px*ca-p.z*sa,z=px*sa+p.z*ca,y=py*cx-z*sx,z2=py*sx+z*cx;
         const perspective=hero?1:850/(850-z2);
         let X=w/2+x*scale*perspective,Y=hero?h/2+(1.2-y)*scale:h/2+(y+20)*scale*perspective;
-        if(!hero){
+        if(hero&&!reduceMotion){
+          const local=Math.max(0,Math.min(1,(form-.14-fract(p.phase)*.18)/(.58+p.rate*.07)));
+          const pull=local*local*local*(local*(local*6-15)+10),angle=Math.sin(pull*Math.PI)*.55;
+          const scatteredX=Math.cos(p.phase+angle)*p.scatter*.75,scatteredY=Math.sin(p.phase+angle)*p.scatter*.65;
+          X=mix(w/2+scatteredX,X,pull);Y=mix(h/2+scatteredY,Y,pull);
+        }else{
           X+=(1-ease)*Math.cos(p.phase+age)*p.scatter;Y+=(1-ease)*Math.sin(p.phase+age)*p.scatter;
         }
         let forceX=0,forceY=0,highlight=0;

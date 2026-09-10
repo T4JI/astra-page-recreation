@@ -125,7 +125,7 @@ test('a secondary pointer cancellation does not cancel the primary drag', () => 
 const mainTrailCount = 880, coreCount = 96;
 function flowSimulation(options = {}) {
   const sim = simulation(false, {interludes: false, warmupFrames: 0, ...options});
-  sim.step(1, 6000); // Complete the opening transition before measuring idle flow.
+  sim.step(1, 6000); // Advance to a stable point in the continuous idle flow.
   return sim;
 }
 function coreCenter(images) {
@@ -134,7 +134,33 @@ function coreCenter(images) {
 }
 const distanceTo = (point,center) => Math.hypot(point[0]-center[0],point[1]-center[1]);
 
-test('hero idle flow carries the outer trail inward after the intro', () => {
+test('hero opens fully formed on the first frame at desktop, mobile, and build-preview sizes', () => {
+  for (const options of [{width:1440,height:900},{width:390,height:844},{width:480,height:520}]) {
+    const settings={...options,interludes:false,warmupFrames:0};
+    const animated=simulation(false,settings), formed=simulation(true,settings);
+    animated.step(1,30); formed.step(1,30);
+    const actual=animated.scenes[0].images, reference=formed.scenes[0].images;
+    const visible=reference.map((p,i)=>({p,i})).filter(({p})=>p[4]>.1);
+    assert.ok(visible.length>3000,'The formed reference must contain the full star field');
+    assert.ok(visible.every(({i})=>actual[i][4]>.05),'Stars must be visible immediately');
+    assert.ok(visible.every(({p,i})=>distanceTo(actual[i],p)<Math.max(options.width,options.height)*.005),
+      'The first frame must already follow the spiral, allowing only 30 ms of inward motion');
+  }
+});
+
+test('reset returns directly to the opening spiral without a scattered transition', () => {
+  const sim=simulation(false,{interludes:false,warmupFrames:0}), canvas=sim.scenes[0];
+  sim.step(1,30);
+  const opening=canvas.images.map(p=>[...p]);
+  const [x,y]=visiblePointerTarget(canvas);
+  canvas.fire('pointerdown',{clientX:x,clientY:y});
+  canvas.fire('pointermove',{clientX:x+30,clientY:y+10});
+  sim.step(12);
+  sim.replay.fire('click'); sim.step(1,30);
+  assert.deepEqual(canvas.images,opening,'Reset must clear rotation and brush offsets and restore the fully formed first frame');
+});
+
+test('hero idle flow carries the outer trail inward', () => {
   const sim = flowSimulation(), canvas = sim.scenes[0], before = canvas.images;
   const center = coreCenter(before);
   const cohort = before.slice(0,mainTrailCount).map((point,index) => ({point,index}))
