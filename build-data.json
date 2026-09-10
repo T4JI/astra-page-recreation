@@ -1,17 +1,30 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "title": "How the Astra recreation was built",
   "date": "2026-09-10",
   "timezone": "America/Los_Angeles",
   "publicUrl": "https://t4ji.github.io/astra-page-recreation/",
-  "summary": "An initial public recreation in about 24 minutes, followed by two user-led animation corrections. The corrected public handoff came 52 minutes 33 seconds after the recorded initial request.",
+  "summary": "Original-build snapshot: An initial public recreation in about 24 minutes, followed by two user-led animation corrections. The corrected public handoff came 52 minutes 33 seconds after the recorded initial request.",
   "scope": {
     "start": "2026-09-10T18:54:12.251Z",
     "cutoff": "2026-09-10T19:46:45.314Z",
-    "cutoffMeaning": "Final corrected public-link message, before the retrospective request at 12:51:21 PDT.",
+    "cutoffMeaning": "Version 3 public-link message, before the retrospective request at 12:51:21 PDT.",
     "included": "The coordinator session and its two descendant specialist sessions, identified by spawn metadata.",
-    "excluded": "The retrospective work itself and unrelated activity.",
-    "revision": "f8d31cda38dcda10b06b98b539817dd04013fb9a"
+    "excluded": "The retrospective, slides, later startup correction and archives, cost audits, and unrelated activity.",
+    "revision": "f8d31cda38dcda10b06b98b539817dd04013fb9a",
+    "kind": "originalBuild",
+    "appliesTo": [
+      "metrics",
+      "timingNotes",
+      "toolCounts",
+      "prompts",
+      "timeline",
+      "issues",
+      "successes",
+      "validationEvidence",
+      "artifactInventory",
+      "validationDefinitions"
+    ]
   },
   "metrics": {
     "elapsedToFirstPublicHandoffSeconds": 1427.254,
@@ -41,9 +54,9 @@
   },
   "timingNotes": [
     "Wall time starts at the recorded user request at 11:54:12, not the session creation time at 11:52:20.",
-    "First public handoff 23m47s; corrected handoff 52m33s; session-creation-to-final 54m25s.",
+    "Original snapshot: first public handoff 23m47s; version 3 handoff 52m33s; session-creation-to-handoff 54m25s.",
     "Recorded assistant-turn durations total 45m27s. This includes tool waits and is not CPU time. Parallel specialist durations are not added.",
-    "The wall clock includes pauses between user corrections. The retrospective page is excluded."
+    "The wall clock includes pauses between the first two user corrections. Later work is excluded from these original-build figures."
   ],
   "toolCounts": {
     "topLevelTotal": 492,
@@ -284,7 +297,7 @@
     "The build preserved 30 chart specifications, 63 tab views, original media references, and real outbound destinations.",
     "Independent validation found and reproduced concrete chart and navigation defects before the first handoff.",
     "User feedback was incorporated into two updates at the same public URL.",
-    "Final animation validation covered pointer disturbance, settling, replay, reduced motion, lifecycle handling, inward flow, recycling, late-time stability, and 30/60 Hz timing equivalence."
+    "Original-build animation validation covered pointer disturbance, settling, replay, reduced motion, lifecycle handling, inward flow, recycling, late-time stability, and 30/60 Hz timing equivalence."
   ],
   "validationEvidence": [
     {
@@ -319,10 +332,10 @@
     }
   ],
   "caveats": [
-    "This was an initial-prompt build plus one clarification round and two substantive user corrections. Calling the final version a flawless one-shot would be inaccurate.",
+    "The original build used one initial prompt, one clarification round, and two substantive user corrections. The latest completed website adds a third correction. Neither is a flawless one-shot.",
     "The star field is a Canvas recreation informed by the original source, not an identical copy of the original rendering engine.",
     "The listed checks describe tested behavior, not a guarantee of pixel-perfect reproduction, identical rendering on every device, or complete coverage of all possible interactions.",
-    "No spending or token-cost estimate is inferred from these records."
+    "No cost estimate was made at the original-build cutoff. A later API-equivalent estimate, with its own cutoff and assumptions, appears in currentSnapshot.cost. Actual spending is unknown."
   ],
   "artifactInventory": {
     "revision": "f8d31cda38dcda10b06b98b539817dd04013fb9a",
@@ -358,7 +371,146 @@
     "chartLinks": "32 copied chart links reopened the intended placement, including under the hosting subpath.",
     "citationReturns": "34 return actions passed the link harness, including a scroll action. This is not a pixel-level audit of every destination.",
     "localReferences": "38 HTML, CSS, asset-map, content-fetch, and PDF-import references checked under the hosting subpath.",
-    "animation": "12 final behavioral cases using actual draw output with controlled time and input. Two new flow checks also rejected the earlier static renderer. Cosmetic glow was reviewed visually.",
+    "animation": "12 original-build behavioral cases using actual draw output with controlled time and input. Two new flow checks also rejected the earlier static renderer. Cosmetic glow was reviewed visually.",
     "coverage": "These are separate checks run at different stages, not one combined test suite. Model benchmark claims and original embedded demonstrations were not independently validated or created by this build."
+  },
+  "currentSnapshot": {
+    "label": "Latest completed experiment before the accounting update",
+    "cutoffExclusive": "2026-09-10T21:47:11.066Z",
+    "cutoffLocal": "2026-09-10T14:47:11.066-07:00",
+    "lastCompletedHandoff": "2026-09-10T21:42:38.244Z",
+    "included": "Initial website, three website correction rounds, archived versions, retrospective, slide creation and revisions, and the earlier cost audit; coordinator and five descendant agents.",
+    "excluded": "This accounting update and all work at or after the cutoff, an unrelated same-folder experiment, hosting and other provider fees, human time, and actual subscription billing.",
+    "websiteRevision": "571c451",
+    "metrics": {
+      "websiteCorrectionRounds": 3,
+      "recreationVersions": 4,
+      "publicHtmlPages": 5,
+      "presentationSlides": 4,
+      "agentsIncludingCoordinator": 6,
+      "topLevelToolInvocations": 928,
+      "coordinatorToolInvocations": 618,
+      "modelResponses": 984,
+      "elapsedToLastCompletedHandoffSeconds": 10105.993,
+      "recordedCoordinatorTurnSeconds": 6305.091,
+      "completedCoordinatorTurns": 16
+    },
+    "validation": {
+      "basis": "Recorded passing checks from two runs completed before the cutoff, at revision 571c451. Not rerun as part of this accounting snapshot.",
+      "testsPassed": 21,
+      "animationTestsPassed": 14,
+      "archiveAndNavigationTestsPassed": 7,
+      "exclusions": "The earlier chart and citation checks are separate recorded runs, not extra cases in this total."
+    },
+    "versions": [
+      {
+        "label": "First build",
+        "url": "./1/",
+        "revision": "b02447a0",
+        "frozen": true
+      },
+      {
+        "label": "Pointer interaction",
+        "url": "./2/",
+        "revision": "975f9c58",
+        "frozen": true
+      },
+      {
+        "label": "Motion and appearance",
+        "url": "./3/",
+        "revision": "f8d31cda",
+        "frozen": true
+      },
+      {
+        "label": "Spiral from the start",
+        "url": "./index.html",
+        "revision": "571c451",
+        "frozen": false
+      }
+    ],
+    "cost": {
+      "currency": "USD",
+      "kind": "API-equivalent estimate, not actual billing",
+      "model": "gpt-6-astra",
+      "pricingUrl": "https://developers.openai.com/api/docs/models/gpt-6-astra",
+      "assumedService": "Fast for all responses",
+      "total": 371.143914,
+      "websiteIncludingCorrectionsAndArchives": 220.161146,
+      "allSlides": 111.012484,
+      "priorSnapshotTotal": 264.30392,
+      "originalWebsite": 189.8422,
+      "actualSubscriptionCharge": null,
+      "method": "Sum unique token_usage_record response IDs across actual descendant sessions; use each response once rather than cumulative counters. Reasoning is included within output. No raw transcripts, local paths, or session identifiers are published.",
+      "ratesUsdPerMillion": {
+        "uncachedInput": 20,
+        "cachedInput": 2,
+        "output": 100
+      },
+      "longContext": {
+        "thresholdInputTokens": 272000,
+        "inputMultiplier": 2,
+        "outputMultiplier": 1.5,
+        "qualifyingResponses": 2
+      },
+      "serviceTierEvidence": {
+        "priorityResponses": 761,
+        "unrecordedResponses": 223,
+        "estimateIfUnrecordedResponsesWereStandard": 329.60719
+      },
+      "phases": [
+        {
+          "label": "First public website",
+          "apiEquivalentUsdAssumingFast": 88.883172
+        },
+        {
+          "label": "First two website corrections",
+          "apiEquivalentUsdAssumingFast": 100.959028
+        },
+        {
+          "label": "Behind-the-build page",
+          "apiEquivalentUsdAssumingFast": 30.226904
+        },
+        {
+          "label": "Initial slides and early revisions",
+          "apiEquivalentUsdAssumingFast": 44.234816
+        },
+        {
+          "label": "Earlier cost audit",
+          "apiEquivalentUsdAssumingFast": 9.74338
+        },
+        {
+          "label": "Later slide revisions",
+          "apiEquivalentUsdAssumingFast": 66.777668
+        },
+        {
+          "label": "Startup correction and archived versions",
+          "apiEquivalentUsdAssumingFast": 30.318946
+        }
+      ]
+    },
+    "tokenUsage": {
+      "input_tokens": 126385679,
+      "cached_input_tokens": 122298368,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 349023,
+      "reasoning_output_tokens": 109643,
+      "total_tokens": 126734702
+    },
+    "toolCounts": {
+      "byName": {
+        "request_user_input_async": 1,
+        "exec": 318,
+        "collaboration.spawn_agent": 5,
+        "mcp__cua_repl.js": 481,
+        "collaboration.send_message": 85,
+        "wait": 1,
+        "collaboration.followup_task": 26,
+        "mcp__cua_repl.js_reset": 4,
+        "clock.sleep": 5,
+        "collaboration.wait_agent": 2
+      },
+      "method": "Count unique top-level calls across the coordinator and its actual descendants. Orchestration calls may contain multiple actions; nested actions are not added to the top-level count."
+    },
+    "timingMethod": "Elapsed time uses the recorded user request and final assistant-message timestamps, matching the original-build milestone method. It includes pauses between user requests. Completed coordinator-turn durations are measured separately, include tool waits, and are not CPU time or human labor. Parallel agent durations are not added."
   }
 }

@@ -22,3 +22,13 @@ The live root is the latest version, including the instant spiral startup fix. H
 The earlier pages intentionally retain their earlier behavior, including startup animations and missing interactions. Their navigation overlay and asset paths are the only presentation changes. See each version's provenance file for its exact revision.
 
 The first-frame regression check reproduces the previous failure, then compares the actual renderer's first draw against the formed spiral at desktop, mobile, and retrospective-preview dimensions. Existing checks cover pointer recovery, reduced motion, continuous flow, recycling, and long-running stability. Run all checks with `node --test tests/*.test.cjs`.
+
+## Experiment accounting
+
+[Inside the build](https://t4ji.github.io/astra-page-recreation/build.html) separates the original website handoff from later experiment work. The original 12:46 p.m. PDT snapshot remains 52m 33s, two correction rounds, 492 tool calls across three agents, and 12 animation checks.
+
+The latest completed experiment snapshot stops before the accounting request at 2:47 p.m. PDT on September 10, 2026. It includes three website corrections, four recreation versions, the retrospective, and four presentation slides. The last handoff was at 2:42:38 p.m., 2h 48m 26s after the first request, including pauses. Across six agents, 928 top-level tool calls were recorded. The latest completed verification passed 21 checks across two runs: 14 animation and seven archive/navigation cases.
+
+The estimated Fast API equivalent is $371.14 overall, including $220.16 for the website and archives and $111.01 for all slide work. It is not an invoice: the actual subscription charge is unknown. The estimate uses recorded usage and [Astra pricing](https://developers.openai.com/api/docs/models/gpt-6-astra), including long-context adjustments, and assumes Fast service for 223 responses with no recorded tier. If those were standard, the overall equivalent would be $329.61. This accounting update, later edits, hosting/provider fees, and human time are excluded.
+
+Aggregate figures, scopes, assumptions, and the phase breakdown are in [build-data.json](./build-data.json). Its original `metrics` retain their original scope; `currentSnapshot` contains the later accounting. The page is static, so displayed figures and the JSON must be updated together when creating another dated snapshot.
