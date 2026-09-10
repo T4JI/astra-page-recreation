@@ -19,7 +19,7 @@
     const frag=document.createDocumentFragment();let prose=null,tableSection=null,footnotes=null,footnoteNumber=0,quotePair=null;const seenQuotes=new Set();
     const reset=()=>{prose=null;};const getProse=()=>{if(!prose){prose=document.createElement('div');prose.className='prose';frag.append(prose);}return prose;};
     const appendHTML=(parent,html)=>parent.insertAdjacentHTML('beforeend',html);
-    function scene(shape){const d=document.createElement('div');d.className='interlude';d.innerHTML=`<canvas role="button" tabindex="0" data-shape="${shape}" aria-label="Drag or use arrow keys to rotate the ${shape==='blossom'?'OpenAI blossom':'cursor'}"></canvas>`;frag.append(d);}
+    function scene(shape){const d=document.createElement('div');d.className='interlude';d.innerHTML=`<canvas role="button" tabindex="0" data-shape="${shape}" aria-label="Move your pointer to disturb the stars. Drag or use arrow keys to rotate the ${shape==='blossom'?'OpenAI blossom':'cursor'}"></canvas>`;frag.append(d);}
     function standalone(index,description){reset();const d=document.createElement('div');d.className='tabs-block standalone-chart';d.innerHTML=`<div id="benchmark-${index}" data-chart="${index}"></div>${caption(description)}`;frag.append(d);}
     for(let i=3;i<content.article.length;i++){const b=content.article[i];
       if(b.type==='heading'&&b.text==='FOOTNOTES'){reset();footnotes=document.createElement('section');footnotes.className='prose footnotes';footnotes.id='footnotes';footnotes.innerHTML='<h2>FOOTNOTES</h2><ol></ol>';frag.append(footnotes);continue;}
