@@ -13,3 +13,5 @@
 @media(max-width:800px){.preferences-dialog{padding:22px}.language-dialog{margin:auto auto 65px;width:calc(100% - 32px)}.language-list{max-height:55vh}}
 
 .recreation-note{max-width:calc(100% - 72px);line-height:1.5;border-radius:12px}
+
+.recreation-note{max-width:calc(100% - 84px);line-height:1.45}
